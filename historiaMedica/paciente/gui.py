@@ -28,7 +28,7 @@ class Frame(tk.Frame):
 
     def camposPaciente(self):
 
-        #LABELS
+        #Labels
         self.lblNombre = tk.Label(self, text='Nombre: ')
         self.lblNombre.config(font=('ARIAl',15,'bold'), bg='#CDD8FF')
         self.lblNombre.grid(column=0, row=0, padx=10, pady=5)
@@ -65,7 +65,7 @@ class Frame(tk.Frame):
         self.lblTelefono.config(font=('ARIAl',15,'bold'), bg='#CDD8FF')
         self.lblTelefono.grid(column=0,row=8, padx=10, pady=5)   
 
-        #ENTRYS
+        #Entrys
         self.svNombre = tk.StringVar()
         self.entryNombre = tk.Entry(self, textvariable=self.svNombre)
         self.entryNombre.config(width=50, font=('ARIAL',15))
@@ -111,7 +111,7 @@ class Frame(tk.Frame):
         self.entryTelefono.config(width=50, font=('ARIAL',15))
         self.entryTelefono.grid(column=1, row=8, padx=10, pady=5, columnspan=2)
 
-        #BUTTONS
+        #Botones
         self.btnNuevo = tk.Button(self, text='Nuevo', command=self.habilitar)
         self.btnNuevo.config(width=20, font=('ARIAL',12,'bold'), fg='#DAD5D6', 
                                 bg='#158645', cursor='hand2',activebackground='#35BD6F')
@@ -127,8 +127,8 @@ class Frame(tk.Frame):
                                 bg='#B00000', cursor='hand2',activebackground='#D27C7C')
         self.btnCancelar.grid(column=2,row=9, padx=10, pady=5)
 
-        #BUSCADOR
-        #LABEL BUSCADOR
+        
+        #Buscador y labels buscador
         self.lblBuscarDni = tk.Label(self, text='Buscar DNI: ')
         self.lblBuscarDni.config(font=('ARIAl',15,'bold'), bg='#CDD8FF')
         self.lblBuscarDni.grid(column=3, row=0, padx=10, pady=5)
@@ -137,7 +137,7 @@ class Frame(tk.Frame):
         self.lblBuscarApellido.config(font=('ARIAl',15,'bold'), bg='#CDD8FF')
         self.lblBuscarApellido.grid(column=3, row=1, padx=10, pady=5)
 
-        #ENTRYS BUSCADOR
+        #Entrys buscador
         self.svBuscarDni = tk.StringVar()
         self.entryBuscarDni = tk.Entry(self, textvariable=self.svBuscarDni)
         self.entryBuscarDni.config(width=20, font=('ARIAL',15))
@@ -148,7 +148,7 @@ class Frame(tk.Frame):
         self.entryBuscarApellido.config(width=20, font=('ARIAL',15))
         self.entryBuscarApellido.grid(column=4, row=1, padx=10, pady=5, columnspan=2)
 
-        #BUTTON BUSCADOR
+        #Botones buscador
         self.btnBuscarCondicion = tk.Button(self, text='Buscar', command = self.buscarCondicion)
         self.btnBuscarCondicion.config(width=20, font=('ARIAL',12,'bold'), fg='#DAD5D6', 
                                 bg='#00396F', cursor='hand2',activebackground='#5B8DBD')
@@ -159,7 +159,7 @@ class Frame(tk.Frame):
                                 bg='#120061', cursor='hand2',activebackground='#7C6DC1')
         self.btnLimpiarBuscador.grid(column=4,row=2, padx=10, pady=5, columnspan=1)
 
-        #BUTTON CALENDARIO
+        #Botones calendario
         self.btnCalendario = tk.Button(self, text='Calendario', command = self.vistaCalendario)
         self.btnCalendario.config(width=12, font=('ARIAL',12,'bold'), fg='#DAD5D6', 
                                 bg='#53005B', cursor='hand2',activebackground='#C774CF')
@@ -177,7 +177,7 @@ class Frame(tk.Frame):
         self.calendar.pack(pady=22)
         self.calendar.grid(row=1, column = 0)
 
-        #TRACE ENVIAR FECHA
+        #Trace enviar fecha
         self.svCalendario.trace('w',self.enviarFecha)
 
     def enviarFecha(self, *args):
@@ -203,7 +203,7 @@ class Frame(tk.Frame):
         if len(self.svBuscarDni.get()) > 0 or len(self.svBuscarApellido.get()) > 0:
             where = "WHERE 1=1"
             if (len(self.svBuscarDni.get())) > 0:
-                where = "WHERE dni = " + self.svBuscarDni.get() + "" #WHERE dni = 87878787
+                where = "WHERE dni = " + self.svBuscarDni.get() + "" 
             if (len(self.svBuscarApellido.get())) > 0:
                 where = "WHERE apellidoPaterno LIKE '" + self.svBuscarApellido.get()+"%' AND activo = 1"
             
@@ -286,7 +286,7 @@ class Frame(tk.Frame):
             self.listaPersona = listarCondicion(where)
         else:
             self.listaPersona = listar()
-            #self.listaPersona.reverse()
+            
 
         self.tabla = ttk.Treeview(self, column=('Nombre', 'APaterno', 'AMaterno','Dni','FNacimiento','Edad','Antecedentes','Correo','Telefono'))
         self.tabla.grid(column=0, row=10, columnspan=10, sticky='nse')
@@ -412,12 +412,12 @@ class Frame(tk.Frame):
         self.topAHistoria.resizable(0,0)
         self.topAHistoria.iconbitmap('img/clinica.ico')
         self.topAHistoria.config(bg='#CDD8FF')
-        #FRAME 1
+        #Frame 1
         self.frameDatosHistoria = tk.LabelFrame(self.topAHistoria)
         self.frameDatosHistoria.config(bg='#CDD8FF')
         self.frameDatosHistoria.pack(fill="both", expand="yes", pady=10, padx=20)
 
-        #LABELS AGREGAR HISTORIA MEDICA
+        #Labels agregar historia medica
         self.lblMotivoHistoria = tk.Label(self.frameDatosHistoria, text='Motivo de la Historia Medica', width=30, font=('ARIAL', 15,'bold'), bg='#CDD8FF')
         self.lblMotivoHistoria.grid(row=0, column=0, padx=5, pady=3)
 
@@ -430,7 +430,7 @@ class Frame(tk.Frame):
         self.lblDetalleHistoria = tk.Label(self.frameDatosHistoria, text='Detalle de la Historia Medica', width=30, font=('ARIAL', 15,'bold'), bg='#CDD8FF')
         self.lblDetalleHistoria.grid(row=6, column=0, padx=5, pady=3)
 
-        #ENTRYS AGREGA HISTORIA MEDICA
+        #Entrys agregar historia medica
         self.svMotivoHistoria = tk.StringVar()
         self.motivoHistoria = tk.Entry(self.frameDatosHistoria, textvariable=self.svMotivoHistoria)
         self.motivoHistoria.config(width=64, font=('ARIAL', 15))
@@ -450,24 +450,24 @@ class Frame(tk.Frame):
         self.detalleHistoria = tk.Entry(self.frameDatosHistoria, textvariable=self.svDetalleHistoria)
         self.detalleHistoria.config(width=64, font=('ARIAL', 15))
         self.detalleHistoria.grid(row=7, column=0, padx= 5, pady=3, columnspan=2)
-        #FRAME 2
+        #Frame 2
         self.frameFechaHistoria = tk.LabelFrame(self.topAHistoria)
         self.frameFechaHistoria.config(bg='#CDD8FF')
         self.frameFechaHistoria.pack(fill="both", expand="yes", padx=20,pady=10)
 
-        #LABEL FECHA AGREGAR HISTORIA
+        #Label fecha agregar historia
         self.lblFechaHistoria = tk.Label(self.frameFechaHistoria, text='Fecha y Hora', width=20, font=('ARIAL', 15, 'bold'), bg='#CDD8FF')
         self.lblFechaHistoria.grid(row=1, column=0, padx=5, pady=3)
         
-        #ENTRY FECHA AGREGAR HISTORIA
+        #Entry agregar historia
         self.svFechaHistoria = tk.StringVar()
         self.entryFechaHistoria = tk.Entry(self.frameFechaHistoria, textvariable=self.svFechaHistoria)
         self.entryFechaHistoria.config(width=20, font=('ARIAL', 15))
         self.entryFechaHistoria.grid(row=1, column=1, padx=5, pady=3)
-        #TRAER FECHA Y HORA ACTUAL
+        #Traer fecha y hora
         self.svFechaHistoria.set(datetime.today().strftime('%d-%m-%Y %H:%M'))
 
-        #BUTTONS AGREGA HISTORIA
+        #Botones agregar historia
         self.btnAgregarHistoria = tk.Button(self.frameFechaHistoria, text='Agregar Historia', command=self.agregaHistorialMedico)
         self.btnAgregarHistoria.config(width=20, font=('ARIAL', 12, 'bold'), fg='#DAD5D6', bg='#000992', cursor='hand2', activebackground='#4E56C6')
         self.btnAgregarHistoria.grid(row=2, column=0, padx=10, pady=5)
@@ -499,7 +499,7 @@ class Frame(tk.Frame):
             self.topHistoriaMedica.destroy()
         except:
             title = 'Eliminar Historia'
-            mensaje = 'Erro al eliminar'
+            mensaje = 'Error al eliminar'
             messagebox.showerror(title, mensaje)
 
     def topEditarHistorialMedico(self):
@@ -517,12 +517,12 @@ class Frame(tk.Frame):
             self.topEditarHistoria.iconbitmap('img/clinica.ico')
             self.topEditarHistoria.config(bg='#CDD8FF')
 
-            #FRAME EDITAR DATOS HISTORIA
+            #Frame editar datos historia
             self.frameEditarHistoria = tk.LabelFrame(self.topEditarHistoria)
             self.frameEditarHistoria.config(bg='#CDD8FF')
             self.frameEditarHistoria.pack(fill="both", expand="yes", padx=20,pady=10)
 
-            #LABEL EDITAR HISTORIA
+            #Label editar historia
             self.lblMotivoEditar = tk.Label(self.frameEditarHistoria, text='Motivo de la historia', width=30, font=('ARIAL', 15, 'bold'), bg='#CDD8FF')
             self.lblMotivoEditar.grid(row=0, column=0, padx=5, pady=3)
 
@@ -535,7 +535,7 @@ class Frame(tk.Frame):
             self.lblDetalleEditar = tk.Label(self.frameEditarHistoria, text='Detalle de la historia', width=30, font=('ARIAL', 15, 'bold'), bg='#CDD8FF')
             self.lblDetalleEditar.grid(row=6, column=0, padx=5, pady=3)
 
-            #ENTRYS EDITAR HISTORIA
+            #Entrys editar historia
 
             self.svMotivoEditar = tk.StringVar()
             self.entryMotivoEditar = tk.Entry(self.frameEditarHistoria, textvariable=self.svMotivoEditar)
@@ -557,29 +557,29 @@ class Frame(tk.Frame):
             self.entryDetalleEditar.config(width=65, font=('ARIAL', 15))
             self.entryDetalleEditar.grid(row = 7, column=0, pady=3, padx=5, columnspan=2)
 
-            #FRAME FECHA EDITAR
+            #Frame fecha editar
             self.frameFechaEditar = tk.LabelFrame(self.topEditarHistoria)
             self.frameFechaEditar.config(bg='#CDD8FF')
             self.frameFechaEditar.pack(fill="both", expand="yes", padx=20, pady=10)
             
-            #LABEL FECHA EDITAR
+            #Label fecha editar
             self.lblFechaHistoriaEditar = tk.Label(self.frameFechaEditar, text='Fecha y Hora', width=30, font=('ARIAL', 15, 'bold'), bg='#CDD8FF')
             self.lblFechaHistoriaEditar.grid(row=1, column=0, padx=5, pady=3)
 
-            #  ENTRY FECHA EDITAR
+            #Entry fecha editar
             self.svFechaHistoriaEditar = tk.StringVar()
             self.entryFechaHistoriaEditar = tk.Entry(self.frameFechaEditar, textvariable=self.svFechaHistoriaEditar)
             self.entryFechaHistoriaEditar.config(width=20, font=('ARIAL', 15))
             self.entryFechaHistoriaEditar.grid(row = 1, column=1, pady=3, padx=5)
 
-            #INSERTAR LOS VALORES A LOS ENTRYS
+            #Valores a los entrys
             self.entryMotivoEditar.insert(0, self.motivoHistoriaEditar)
             self.entryExamenAuxiliarEditar.insert(0, self.exaMenAuxliarHistoriaEditar)
             self.entryTratamientoEditar.insert(0, self.tratamientoHistoriaEditar)
             self.entryDetalleEditar.insert(0, self.detalleHistoriaEditar)
             self.entryFechaHistoriaEditar.insert(0, self.fechaHistoriaEditar)
 
-            #BUTTON EDITAR HISTORIA
+            #Botones editar historia
             self.btnEditarHistoriaMedica = tk.Button(self.frameFechaEditar, text='Editar Historia', command = self.historiaMedicaEditar)
             self.btnEditarHistoriaMedica.config(width=20, font=('ARIAL', 12, 'bold'), fg='#DAD5D6', bg='#030058', cursor='hand2', activebackground='#8986DA')
             self.btnEditarHistoriaMedica.grid(row=2, column=0, padx=10, pady=5)
